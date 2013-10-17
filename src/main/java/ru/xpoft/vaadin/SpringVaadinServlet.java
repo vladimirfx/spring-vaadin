@@ -3,7 +3,11 @@ package ru.xpoft.vaadin;
 import com.vaadin.server.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextException;
+import org.springframework.util.ClassUtils;
+import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
@@ -21,6 +25,7 @@ public class SpringVaadinServlet extends VaadinServlet
      */
     private static final String SYSTEM_MESSAGES_BEAN_NAME_PARAMETER = "systemMessagesBeanName";
     private static final String CONTEXT_CONFIG_LOCATION_PARAMETER = "contextConfigLocation";
+    private static final String CONTEXT_CLASS_PARAMETER = "contextClass";
     /**
      * Spring Application Context
      */
@@ -31,13 +36,25 @@ public class SpringVaadinServlet extends VaadinServlet
     private String systemMessagesBeanName = "";
 
     @Override
-    public void init(ServletConfig config) throws ServletException
-    {
+    public void init(ServletConfig config) throws ServletException {
         applicationContext = WebApplicationContextUtils.getWebApplicationContext(config.getServletContext());
 
-        if (config.getInitParameter(CONTEXT_CONFIG_LOCATION_PARAMETER) != null)
-        {
-            XmlWebApplicationContext context = new XmlWebApplicationContext();
+        if (config.getInitParameter(CONTEXT_CONFIG_LOCATION_PARAMETER) != null) {
+            Class contextClass = XmlWebApplicationContext.class;
+            if (config.getInitParameter(CONTEXT_CLASS_PARAMETER) != null) {
+                String contextClassName = config.getInitParameter(CONTEXT_CLASS_PARAMETER);
+                try {
+                    contextClass = ClassUtils.forName(contextClassName, ClassUtils.getDefaultClassLoader());
+                } catch (ClassNotFoundException ex) {
+                    throw new ApplicationContextException(
+                            "Failed to load custom context class [" + contextClassName + "]", ex);
+                }
+            }
+            if (!ConfigurableWebApplicationContext.class.isAssignableFrom(contextClass)) {
+                throw new ApplicationContextException("Custom context class [" + contextClass.getName() +
+                        "] is not of type [" + ConfigurableWebApplicationContext.class.getName() + "]");
+            }
+            ConfigurableWebApplicationContext context = (ConfigurableWebApplicationContext) BeanUtils.instantiateClass(contextClass);
             context.setParent(applicationContext);
             context.setConfigLocation(config.getInitParameter(CONTEXT_CONFIG_LOCATION_PARAMETER));
             context.setServletConfig(config);
