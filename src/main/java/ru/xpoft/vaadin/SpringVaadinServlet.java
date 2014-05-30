@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextException;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -30,6 +31,10 @@ public class SpringVaadinServlet extends VaadinServlet
      * Spring Application Context
      */
     private transient ApplicationContext applicationContext;
+    /**
+     * Spring Application Context created in that class
+     */
+    private transient boolean applicationContextCreated = false;
     /**
      * system message bean name
      */
@@ -62,6 +67,7 @@ public class SpringVaadinServlet extends VaadinServlet
             context.refresh();
 
             applicationContext = context;
+            applicationContextCreated = true;
         }
 
         if (config.getInitParameter(SYSTEM_MESSAGES_BEAN_NAME_PARAMETER) != null)
@@ -110,5 +116,15 @@ public class SpringVaadinServlet extends VaadinServlet
         final VaadinServletService service = super.createServletService(deploymentConfiguration);
         initializePlugin(service);
         return service;
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        getServletContext().log("Destroying Spring Vaadin servlet '" + getServletName() + "'");
+        SpringApplicationContext.setApplicationContext(null);
+        if (applicationContextCreated && this.applicationContext instanceof ConfigurableApplicationContext) {
+            ((ConfigurableApplicationContext) this.applicationContext).close();
+        }
     }
 }
