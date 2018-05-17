@@ -6,7 +6,7 @@
 
     <groupId>ru.xpoft.vaadin</groupId>
     <artifactId>spring-vaadin-integration</artifactId>
-    <version>3.2</version>
+    <version>4.0.CITC4-SNAPSHOT</version>
     <name>SpringVaadinIntegration</name>
     <packaging>bundle</packaging>
     <url>https://github.com/xpoft/spring-vaadin</url>
@@ -15,8 +15,8 @@
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.2.0.RELEASE</spring.version>
-        <vaadin.version>7.6.0</vaadin.version>
+        <spring.version>3.1.2.RELEASE</spring.version>
+        <vaadin.version>8.0.0</vaadin.version>
 
         <!-- ZIP Manifest fields -->
         <Implementation-Version>${project.version}</Implementation-Version>
