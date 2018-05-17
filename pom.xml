@@ -28,9 +28,9 @@
     </properties>
 
     <scm>
-        <url>git://github.com/vladimirfx/spring-vaadin.git</url>
-        <connection>scm:git:git://github.com/vladimirfx/spring-vaadin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:/vladimirfx/spring-vaadin.git</developerConnection>
+        <url>https://github.com/vladimirfx/spring-vaadin.git</url>
+        <connection>scm:git:https://github.com/vladimirfx/spring-vaadin.git</connection>
+        <developerConnection>scm:git:https://github.com/vladimirfx/spring-vaadin.git</developerConnection>
         <tag>spring-vaadin-integration</tag>
     </scm>
 
