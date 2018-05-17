@@ -9,7 +9,7 @@
     <version>4.0.CITC4-SNAPSHOT</version>
     <name>SpringVaadinIntegration</name>
     <packaging>bundle</packaging>
-    <url>https://github.com/xpoft/spring-vaadin</url>
+    <url>https://github.com/vladimirfx/spring-vaadin</url>
 
     <properties>
         <maven.compiler.source>1.6</maven.compiler.source>
@@ -28,15 +28,15 @@
     </properties>
 
     <scm>
-        <url>git://github.com/xpoft/spring-vaadin.git</url>
-        <connection>scm:git:git://github.com/xpoft/spring-vaadin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:/xpoft/spring-vaadin.git</developerConnection>
+        <url>git://github.com/vladimirfx/spring-vaadin.git</url>
+        <connection>scm:git:git://github.com/vladimirfx/spring-vaadin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:/vladimirfx/spring-vaadin.git</developerConnection>
         <tag>spring-vaadin-integration</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/xpoft/spring-vaadin/issues</url>
+        <url>https://github.com/vladimirfx/spring-vaadin/issues</url>
     </issueManagement>
 
     <dependencies>
@@ -102,9 +102,15 @@
 
     <distributionManagement>
         <repository>
-            <id>repo</id>
-            <url>file:///${basedir}/repository</url>
+            <id>citc.opensource</id>
+            <name>CITC Open Source repo</name>
+            <url>https://maven1.citc.ru/content/repositories/citc-opensource</url>
         </repository>
+        <snapshotRepository>
+            <id>citc.snapshots</id>
+            <name>CITC Main snapshots repo</name>
+            <url>https://maven1.citc.ru/content/repositories/citc-snapshot</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <build>
