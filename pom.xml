@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.xpoft.vaadin</groupId>
     <artifactId>spring-vaadin-integration</artifactId>
-    <version>4.0.CITC4-SNAPSHOT</version>
+    <version>4.0.CITC4</version>
     <name>SpringVaadinIntegration</name>
     <packaging>bundle</packaging>
     <url>https://github.com/vladimirfx/spring-vaadin</url>
@@ -31,7 +29,7 @@
         <url>https://github.com/vladimirfx/spring-vaadin.git</url>
         <connection>scm:git:https://github.com/vladimirfx/spring-vaadin.git</connection>
         <developerConnection>scm:git:https://github.com/vladimirfx/spring-vaadin.git</developerConnection>
-        <tag>spring-vaadin-integration</tag>
+        <tag>spring-vaadin-integration-4.0.CITC4</tag>
     </scm>
 
     <issueManagement>
