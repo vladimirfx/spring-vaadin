@@ -1,6 +1,6 @@
 
-/.idea/libraries
-/.idea/workspace.xml
+/.idea/*
 /target
-/*.ipr
-/*.iml
+*.ipr
+*.iml
+*.iws
